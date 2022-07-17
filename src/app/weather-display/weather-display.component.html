@@ -1,0 +1,12 @@
+<p>weather-display works!</p>
+<p>
+<input  [(ngModel)]="city1" >
+<button (click) = "getWeather()">{{city1}} Weather</button><br>
+temperature in {{city1}} is {{temperature}} celcius
+</p>
+<p>
+<input  [(ngModel)]="city2" >
+<button (click) = "compareWeather()">Compare {{city1}} with {{city2}}</button>
+<br>
+The temperature difference between  {{city1}} and {{city2}} is {{difference}}
+</p>
