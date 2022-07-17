@@ -11,4 +11,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 To run this example code one has to acquire a free API key at: http://api.weatherapi.com/
 
-A comprensive explanation is published here https://medium.com/@t.dankers/how-to-use-observables-and-subject-in-a-common-angular-application-379cfbf67a19
+A comprensive explanation is published [at Medium](https://medium.com/@t.dankers/how-to-use-observables-and-subject-in-a-common-angular-application-379cfbf67a19)
