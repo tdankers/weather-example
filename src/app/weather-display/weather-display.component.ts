@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { defer, forkJoin, Observable, zip } from 'rxjs';
+import { defer, forkJoin, Observable, Subject, zip } from 'rxjs';
 import { WeatherNotifierService } from '../weather-notifier.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-weather-display',
@@ -17,8 +18,8 @@ export class WeatherDisplayComponent implements OnInit {
   city1: string = "London";
   city2: string = "London";
   difference: number = 0;
-
-
+  temp1: number = 0;
+  temp2: number = 0;
 
   constructor(private http: HttpClient, private weatherNotifyService: WeatherNotifierService) { 
       
@@ -54,7 +55,7 @@ export class WeatherDisplayComponent implements OnInit {
     )
   }
 
-  public compareWeather(){
+  public compareWeather1(){
       let observableArray = new Array<Observable<string>>();
       observableArray.push(this.defer1);
       observableArray.push(this.defer2);
@@ -65,9 +66,18 @@ export class WeatherDisplayComponent implements OnInit {
           this.difference = tmp1 - tmp2;
 
         }
+      )}  
 
-      )
-
-  }
-
+      public compareWeather(){
+        this.defer1.subscribe(
+            result1 =>{
+            this.defer2.subscribe( result2 =>{
+              let tmp1 =(result1 as any)['current']["temp_c"];
+              let tmp2 =(result2 as any)['current']["temp_c"];
+              this.difference = tmp1 - tmp2;
+            }
+            )
+          }
+        )
+      }
 }
